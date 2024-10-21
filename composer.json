@@ -2,7 +2,12 @@
     "name": "orchestra/extension",
     "description": "Extension Component for Orchestra Platform",
     "homepage": "http://orchestraplatform.com/docs/latest/components/extension/",
-    "keywords": ["orchestra-platform", "orchestral", "laravel", "extension"],
+    "keywords": [
+        "orchestra-platform",
+        "orchestral",
+        "laravel",
+        "extension"
+    ],
     "license": "MIT",
     "authors": [
         {
@@ -13,30 +18,44 @@
     ],
     "autoload": {
         "psr-4": {
-            "Orchestra\\Extension\\" : "src/"
+            "Orchestra\\Extension\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Orchestra\\Extension\\Tests\\" : "tests/"
+            "Orchestra\\Extension\\Tests\\": "tests/"
         }
     },
     "require": {
-        "php": "^7.3 || ^8.0",
-        "orchestra/contracts": "^6.0",
-        "orchestra/memory": "^6.0",
-        "orchestra/support": "^6.0"
+        "php": "^8.0",
+        "orchestra/contracts": "7.x-dev",
+        "orchestra/memory": "7.x-dev",
+        "orchestra/support": "7.x-dev"
     },
     "require-dev": {
-        "orchestra/testbench": "^6.17"
+        "orchestra/testbench": "^7.0"
     },
     "extra": {
         "branch-alias": {
-            "dev-master": "6.0-dev"
+            "dev-master": "7.0-dev"
         }
     },
     "config": {
         "sort-packages": true
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/katsana-external/contracts"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/katsana-external/memory"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/katsana-external/support"
+        }
+    ]
 }
