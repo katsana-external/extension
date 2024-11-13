@@ -40,7 +40,12 @@ class ExtensionServiceProvider extends ServiceProvider
             $provider = $app->make('orchestra.extension.provider');
 
             $dispatcher = new Dispatcher(
-                $app, $app->make('config'), $app->make('events'), $app->make('files'), $finder, $provider
+                $app,
+                $app->make('config'),
+                $app->make('events'),
+                $app->make('files'),
+                $finder,
+                $provider
             );
 
             return new Factory($app, $dispatcher, $app->make('orchestra.extension.status'));
@@ -120,8 +125,12 @@ class ExtensionServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $path = \realpath(__DIR__.'/../');
+        $path = \realpath(__DIR__ . '/../');
 
-        $this->addConfigComponent('orchestra/extension', 'orchestra/extension', "{$path}/config");
+        $this->mergeConfigFrom("{$path}/config/config.php", 'orchestra/extension');
+
+        $this->publishes([
+            "{$path}/config/config.php" => config_path('orchestra/extension.php'),
+        ], ['orchestra-extension', 'laravel-config']);
     }
 }
