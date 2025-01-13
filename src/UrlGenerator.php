@@ -177,8 +177,8 @@ class UrlGenerator implements UrlGeneratorContract
         $pattern = \trim($this->prefix, '/');
 
         if (\is_null($this->domain) && $forceBase === true) {
-            $pattern = \trim($this->basePrefix, '/')."/{$pattern}";
-            $pattern = \trim($pattern, '/');
+            $pattern = \trim($this->basePrefix??'', '/')."/{$pattern}";
+            $pattern = \trim($pattern??'', '/');
         }
 
         empty($pattern) && $pattern = '/';
@@ -252,7 +252,7 @@ class UrlGenerator implements UrlGeneratorContract
     protected function resolveBaseUrlFrom(?string $root): void
     {
         // Build base URL and prefix.
-        $baseUrl = \ltrim(\str_replace(['https://', 'http://'], '', $root), '/');
+        $baseUrl = \ltrim(\str_replace(['https://', 'http://'], '', $root??''), '/');
         $base = \explode('/', $baseUrl, 2);
 
         if (\count($base) > 1) {
